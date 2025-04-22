@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Systemwarnung</title>
+  <link rel="manifest" href="manifest.json">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log('Service Worker registriert', reg))
+        .catch(err => console.error('Service Worker Fehler:', err));
+    }
+  </script>
+  <style>
+    body {
+      background-color: #1c1c1c;
+      color: #ff4c4c;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .container {
+      max-width: 90%;
+    }
+    h1 {
+      font-size: 2rem;
+      animation: blink 1s step-start infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    button {
+      background-color: #ff4c4c;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    .hidden {
+      display: none;
+      margin-top: 20px;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>*** SYSTEMWARNUNG ***</h1>
+    <p>Kritischer Fehler entdeckt! Malware "SmokeRequest.vbs" wurde aktiviert!</p>
+    <p>Dein System steht kurz vor der Uebernahme...</p>
+    <p>Was moechtest du tun?</p>
+    <button onclick="accept()">1) Akzeptieren und mit Julijan rauchen</button>
+    <button onclick="decline()">2) Verweigern und alles riskieren</button>
+    <button onclick="preach()">3) Ich bin unentschlossen... ueberzeug mich!</button>
+
+    <div id="message" class="hidden"></div>
+  </div>
+
+  <script>
+    function accept() {
+      window.location.href = "https://www.youtube.com/watch?v=FXtl2Zcdzow";
+    }
+
+    function decline() {
+      const msg = document.getElementById('message');
+      msg.innerHTML = `
+        <p>Du hast dich gegen das Abenteuer entschieden...</p>
+        <p>Aber hey... es waere wirklich chillig gewesen.</p>
+        <p>Vielleicht ueberlegst du es dir nochmal.</p>
+      `;
+      msg.classList.remove("hidden");
+      setTimeout(() => {
+        window.location.href = "https://www.youtube.com/shorts/tvKgLVkWb5o";
+      }, 4000);
+    }
+
+    function preach() {
+      const msg = document.getElementById('message');
+      msg.innerHTML = `
+        <p><strong>--- Predigt Modus aktiviert ---</strong></p>
+        <p>Manchmal im Leben geht es nicht nur um Entscheidungen,<br>
+        sondern um Erlebnisse.</p>
+        <p>Eine Zigarette mit Julijan ist keine einfache Rauchpause.<br>
+        Es ist ein Moment des Friedens, des Austauschs, der Magie.</p>
+        <p>Niemand erinnert sich spaeter an einen abgeschlossenen Auftrag in MOT.<br>
+        Aber an das Geraeusch eines Feuerzeugs, dem Geruch des Rauches und der Entspannung in der Raucherecke.</p>
+        <p>Willst du das wirklich verpassen?</p>
+        <button onclick="finalChoice(true)">Ja, ich geh mit Julijan rauchen</button>
+        <button onclick="finalChoice(false)">Nein, ich bleib weiter lost</button>
+      `;
+      msg.classList.remove("hidden");
+    }
+
+    function finalChoice(yes) {
+      if (yes) {
+        window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+      } else {
+        alert("Das war... die falsche Entscheidung.
+Aber hey, du wirst schon wissen, was du verpasst hast.");
+        window.location.href = "https://www.youtube.com/watch?v=bZRZZmsL1qA";
+      }
+    }
+  </script>
+</body>
+</html>

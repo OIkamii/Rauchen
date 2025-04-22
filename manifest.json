@@ -1,0 +1,21 @@
+{
+  "name": "Rauch mit Julijan",
+  "short_name": "RauchApp",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#1c1c1c",
+  "theme_color": "#ff4c4c",
+  "description": "Eine charmante Entscheidungshilfe von Julijan.",
+  "icons": [
+    {
+      "src": "icon-cigarette.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-cigarette.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
