@@ -5,98 +5,121 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Rauch mit Julijan</title>
   <link rel="manifest" href="manifest.json">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js');
     }
   </script>
   <style>
-    /* Basis-Reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; }
-
-    body {
+    :root {
+      --primary: #ff6b6b;
+      --primary-hover: #ee5253;
+      --bg: #f0f2f5;
+      --card-bg: #ffffff;
+      --text: #333333;
+      --muted: #666666;
+    }
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .container {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-      color: #333;
-      text-align: center;
       padding: 20px;
+      height: 100%;
     }
-
     .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      max-width: 400px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      max-width: 360px;
       width: 100%;
-      padding: 30px;
+      padding: 32px;
+      text-align: center;
     }
-
     h1 {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-      color: #555;
+      font-size: 2rem;
+      margin-bottom: 8px;
+      font-weight: 600;
     }
-    p { margin: 10px 0; line-height: 1.4; }
-
+    p.subtitle {
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
     .buttons {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-top: 20px;
+    }
+    @media (min-width: 480px) {
+      .buttons {
+        flex-direction: row;
+      }
     }
     button {
-      background: #ff6b6b;
+      flex: 1;
+      background: var(--primary);
+      color: #fff;
       border: none;
       border-radius: 8px;
-      padding: 12px;
+      padding: 14px 0;
       font-size: 1rem;
-      color: white;
+      font-weight: 600;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.2s;
     }
     button:hover {
-      background: #ee5253;
+      background: var(--primary-hover);
+      transform: translateY(-2px);
     }
-
     #message {
-      margin-top: 20px;
+      margin-top: 24px;
       text-align: left;
     }
     #message p {
-      background: #f1f1f1;
-      padding: 12px;
-      border-radius: 6px;
-      margin-bottom: 10px;
+      background: #eef0f3;
+      padding: 14px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      line-height: 1.5;
     }
-    #message .final-buttons {
+    .final-buttons {
       display: flex;
       gap: 10px;
-      justify-content: center;
+      margin-top: 16px;
     }
-    #message .final-buttons button {
+    .final-buttons button {
+      padding: 12px;
       flex: 1;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Halöle wollen wir Rauchen?</h1>
-    <p>Julijan lädt dich ein auf eine entspannte Rauchpause.</p>
-    <div class="buttons">
-      <button onclick="accept()">1) Klar, ich bin dabei!</button>
-      <button onclick="decline()">2) Nein danke, vielleicht später.</button>
-      <button onclick="preach()">3) Ich bin unentschlossen... ueberzeug mich!</button>
+  <div class="container">
+    <div class="card">
+      <h1>Halöle gömer Rauche?</h1>
+      <p class="subtitle">Julijan lädt dich ein, einen entspannten Moment zu genießen.</p>
+      <div class="buttons">
+        <button onclick="accept()">Klar, ich bin dabei!</button>
+        <button onclick="decline()">Nein danke, später.</button>
+        <button onclick="preach()">Ich bin unentschlossen... überzeug mich!</button>
+      </div>
+      <div id="message"></div>
     </div>
-    <div id="message"></div>
   </div>
 
   <script>
     function accept() {
-      window.location.href = "https://www.youtube.com/watch?v=FXtl2Zcdzow";
+      location.href = "https://www.youtube.com/watch?v=FXtl2Zcdzow";
     }
 
     function decline() {
@@ -105,31 +128,40 @@
         "Aber hey, es wäre wirklich chillig gewesen.",
         "Vielleicht überlegst du es dir nochmal."
       ], () => {
-        window.location.href = "https://www.youtube.com/shorts/tvKgLVkWb5o";
+        setTimeout(() => {
+          location.href = "https://www.youtube.com/shorts/tvKgLVkWb5o";
+        }, 2000);
       });
     }
 
     function preach() {
       showMessage([
         "Warum eine Pause so wertvoll ist:",
-        "Rauchen mit Julijan ist mehr als ein Zug an der Zigarette. Es ist ein Moment zum Durchatmen, zum Austauschen und Abschalten. Der Alltag wird kurz pausiert und neue Energie getankt. Willst du diesen angenehmen Augenblick wirklich verpassen?"
+        "",
+        "Rauchen mit Julijan ist mehr als ein Zug an der Zigarette.",
+        "",
+        "Es ist ein Moment zum Durchatmen, zum Austauschen und Abschalten. Niemand erinnert sich später an einen abgeschlossenen Auftrag in MOT. Aber an das Geräusch eines Feuerzeugs, dem Geruch des Rauches und der Entspannung in der Raucherecke.",
+        "",
+        "Der Alltag wird kurz pausiert und neue Energie getankt.",
+        "",
+        "Willst du diesen angenehmen Augenblick wirklich verpassen?"
       ], () => {
-        const container = document.createElement('div');
-        container.classList.add('final-buttons');
-        container.innerHTML = `
+        const btns = document.createElement('div');
+        btns.className = 'final-buttons';
+        btns.innerHTML = `
           <button onclick="finalChoice(true)">Ja, lass uns gehen</button>
-          <button onclick="finalChoice(false)">Nein, bin raus</button>
+          <button onclick="finalChoice(false)">Nein, bleib weiter lost</button>
         `;
-        document.getElementById('message').appendChild(container);
+        document.getElementById('message').appendChild(btns);
       });
     }
 
     function finalChoice(yes) {
       if (yes) {
-        window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
       } else {
         alert("Schade, du verpasst einen entspannten Moment.");
-        window.location.href = "https://www.youtube.com/watch?v=bZRZZmsL1qA";
+        location.href = "https://www.youtube.com/watch?v=bZRZZmsL1qA";
       }
     }
 
@@ -141,9 +173,7 @@
         p.textContent = text;
         msg.appendChild(p);
       });
-      if (callback) {
-        callback();
-      }
+      if (callback) callback();
     }
   </script>
 </body>
