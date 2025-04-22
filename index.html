@@ -84,12 +84,12 @@
 </head>
 <body>
   <div class="card">
-    <h1>Du bist dran!</h1>
+    <h1>Halöle wollen wir Rauchen?</h1>
     <p>Julijan lädt dich ein auf eine entspannte Rauchpause.</p>
     <div class="buttons">
       <button onclick="accept()">1) Klar, ich bin dabei!</button>
       <button onclick="decline()">2) Nein danke, vielleicht später.</button>
-      <button onclick="preach()">3) Erzähl mir mehr...</button>
+      <button onclick="preach()">3) Ich bin unentschlossen... ueberzeug mich!</button>
     </div>
     <div id="message"></div>
   </div>
@@ -111,11 +111,8 @@
 
     function preach() {
       showMessage([
-        "--- Warum eine Pause so wertvoll ist ---",
-        "Rauchen mit Julijan ist mehr als ein Zug an der Zigarette.",
-        "Es ist ein Moment zum Durchatmen, zum Austauschen und Abschalten.",
-        "Der Alltag wird kurz pausiert und neue Energie getankt.",
-        "Willst du diesen angenehmen Augenblick wirklich verpassen?"
+        "Warum eine Pause so wertvoll ist:",
+        "Rauchen mit Julijan ist mehr als ein Zug an der Zigarette. Es ist ein Moment zum Durchatmen, zum Austauschen und Abschalten. Der Alltag wird kurz pausiert und neue Energie getankt. Willst du diesen angenehmen Augenblick wirklich verpassen?"
       ], () => {
         const container = document.createElement('div');
         container.classList.add('final-buttons');
